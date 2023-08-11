@@ -2,8 +2,14 @@ import {TouchableOpacity, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {Box, Text} from 'native-base';
 
+//Navigation
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackPramList} from '../../screens/screen/Home';
+
 const ShoesDiscountCount = () => {
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
+  const navigation = useNavigation<StackNavigationProp<RootStackPramList>>();
 
   useEffect(() => {
     const discountEndTime = Date.now() + 3600000;
@@ -85,7 +91,9 @@ const ShoesDiscountCount = () => {
         </Box>
       </Box>
       <Box>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={
+          () => navigation.navigate('AllProducts')}
+          >
           <Text underline color={'#1E1E1E'} fontSize={20} bold>
             see all
           </Text>

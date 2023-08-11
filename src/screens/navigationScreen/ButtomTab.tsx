@@ -2,7 +2,7 @@ import {View} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Home, Shoes, Cart, Favorite} from '../screen/index';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 import {Box, Text, Image, Heading} from 'native-base';
 
@@ -18,19 +18,19 @@ const ButtomTab = () => {
           display: 'flex',
           position: 'absolute',
           bottom: 25,
-          left: '10%',
-          right: '10%',
+          left: '5%',
+          right: '5%',
           elevation: 2,
           backgroundColor: '#1E1E1E',
           borderRadius: 15,
           height: 80,
-          width: '80%',
+          width: '90%',
         },
       }}>
       <Tab.Screen
         name="Home"
         component={Home}
-        options={{
+        options={{   
           tabBarIcon: ({focused}) => (
             <Box
               flexDirection={'row'}
@@ -143,5 +143,7 @@ const ButtomTab = () => {
     </Tab.Navigator>
   );
 };
+
+
 
 export default ButtomTab;

@@ -68,7 +68,7 @@ export const ProductData: ShoesType[] = [
     description:
       "Torn between 2 looks? Not any more—this AF-1 gets a 2-tone treatment from the tongue to the sole. The split-colour Swooshes and soles add just the right touch of interest, and mismatched branding on the tongue and backtab completes the look. And don't worry, it still delivers cushioned comfort and the classic AF-1 look with era-echoing '80s construction, bold details and nothin'-but-net style. Step up in this elevated silhouette (literally and figuratively).",
     rating: 4.2,
-    favborite: false,
+    favborite: true,
     showsType: "Men's Shoes",
     showsLeft: 20,
     showsSold: 4500,
@@ -119,7 +119,7 @@ export const ProductData: ShoesType[] = [
     showsSold: 2400,
   },
   {
-    id: '6',
+    id: '8',
     title: "Air Jordan 1 Mid",
     imageUrl:
       'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ea3a034a-351d-4d5e-9e39-6ebe24eebd23/air-jordan-1-mid-shoes-SQf7DM.png',
