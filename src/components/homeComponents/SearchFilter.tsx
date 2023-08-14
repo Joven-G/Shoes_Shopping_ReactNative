@@ -24,7 +24,7 @@ const SearchFilter = () => {
             InputLeftElement={
               <Icon name="search" size={30} color={'#1E1E1E'} />
             }
-            placeholderTextColor={'#d7d7d7w'}
+            placeholderTextColor={'#ffffff'}
             placeholder="Find pair of shoes..."
           />
         </Flex>

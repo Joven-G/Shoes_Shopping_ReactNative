@@ -1,21 +1,41 @@
 import {View} from 'react-native';
 import React from 'react';
+import { getFocusedRouteNameFromRoute, useNavigationState } from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Home, Shoes, Cart, Favorite} from '../screen/index';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-
 import {Box, Text, Image, Heading} from 'native-base';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackPramList} from '../screen/Home';
+import ProductDetails from '../../components/productDetailsScreen/ProductDetails';
 
 const Tab = createBottomTabNavigator();
+// type DetailsProps = NativeStackScreenProps<RootStackPramList, 'ProductDetails'>;
 
-const ButtomTab = () => {
+const ButtomTab = ({navigation, route}: any) => {
+
+
+  const getTabBarVisibility = (route: any) => {
+    const focusedRouteName = getFocusedRouteNameFromRoute(route);
+    console.log(focusedRouteName);
+    
+    if (route === 'ProductDetails') {
+      return 'none';
+    }
+    return 'flex';
+  };
+
+  const navigationState = useNavigationState(state => state);
+
+  console.log(navigationState.key);
+  
+
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({route}) => ({
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          display: 'flex',
+          display: getTabBarVisibility(route),
           position: 'absolute',
           bottom: 25,
           left: '5%',
@@ -26,18 +46,18 @@ const ButtomTab = () => {
           height: 80,
           width: '90%',
         },
-      }}>
+      })}>
       <Tab.Screen
         name="Home"
         component={Home}
-        options={{   
+        options={{
           tabBarIcon: ({focused}) => (
             <Box
               flexDirection={'row'}
               alignItems={'center'}
               rounded="lg"
               p="8px"
-              ml={focused?'24%':'0%'}
+              ml={focused ? '24%' : '0%'}
               justifyContent={'space-between'}
               bgColor={focused ? '#ffffff' : '#1E1E1E'}>
               <Image
@@ -66,7 +86,7 @@ const ButtomTab = () => {
               alignItems={'center'}
               rounded="lg"
               p="8px"
-              ml={focused?'24%':'0%'}
+              ml={focused ? '24%' : '0%'}
               justifyContent={'space-between'}
               bgColor={focused ? '#ffffff' : '#1E1E1E'}>
               <Image
@@ -94,7 +114,7 @@ const ButtomTab = () => {
               alignItems={'center'}
               rounded="lg"
               p="8px"
-              ml={focused?'24%':'0%'}
+              ml={focused ? '24%' : '0%'}
               justifyContent={'space-between'}
               bgColor={focused ? '#ffffff' : '#1E1E1E'}>
               <Image
@@ -122,7 +142,7 @@ const ButtomTab = () => {
               alignItems={'center'}
               rounded="lg"
               p="8px"
-              ml={focused?'-30%':'0%'}
+              ml={focused ? '-30%' : '0%'}
               justifyContent={'space-between'}
               bgColor={focused ? '#ffffff' : '#1E1E1E'}>
               <Image
@@ -143,7 +163,5 @@ const ButtomTab = () => {
     </Tab.Navigator>
   );
 };
-
-
 
 export default ButtomTab;

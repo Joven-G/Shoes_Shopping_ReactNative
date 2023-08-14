@@ -7,10 +7,15 @@ import React from 'react';
 import {ProductData} from '../../data/shoesData';
 import {Box, FlatList, Text, Flex, Image, Center} from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackPramList} from '../../screens/screen/Home';
 
 const scrennWidth = Dimensions.get('screen').width;
 
 const ShoesListItem = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackPramList>>();
+
   return (
     <Box alignItems={'center'} width={scrennWidth - 1}>
       <FlatList
@@ -22,7 +27,12 @@ const ShoesListItem = () => {
           return (
             <Box w={'50%'} p={2}>
               <Box rounded="lg">
-                <TouchableWithoutFeedback onPress={() => console.log('')}>
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    navigation.navigate('ProductDetails', {
+                      product: item,
+                    });
+                  }}>
                   <Image
                     h={150}
                     opacity={0.8}

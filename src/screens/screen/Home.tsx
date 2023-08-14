@@ -4,9 +4,23 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LinearGradient from 'react-native-linear-gradient';
 import HomeMainPage from '../../components/homeComponents/HomeMainPage';
+import ProductDetails from '../../components/productDetailsScreen/ProductDetails';
+import Shoes from './Shoes';
 import AllProductItem from '../../components/productDetailsScreen/AllProductItem';
 
-interface Product {}
+interface Product {
+  id:string;
+  title: string;
+  imageUrl: string;
+  origilanPrice: number;
+  discountPrice: number;
+  description: string;
+  rating: number;
+  favborite: boolean;
+  showsType: string;
+  showsLeft: number;
+  showsSold: number;
+}
 
 export type RootStackPramList = {
   ProductHome: undefined;
@@ -29,6 +43,13 @@ const Home = () => {
         <Stack.Screen
           name="AllProducts"
           component={AllProductItem}
+          options={{
+            headerShown:false,
+          }}
+        />
+        <Stack.Screen
+          name="ProductDetails"
+          component={ProductDetails}
           options={{
             headerShown: false,
           }}

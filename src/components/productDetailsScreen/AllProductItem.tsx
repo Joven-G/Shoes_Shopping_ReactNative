@@ -4,21 +4,26 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import {Box, Center, FlatList, Flex, Text, Image,Input} from 'native-base';
+import {Box, Center, FlatList, Flex, Text, Image, Input} from 'native-base';
 import {ProductData} from '../../data/shoesData';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useNavigation } from "@react-navigation/native";
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackPramList} from '../../screens/screen/Home';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
+type DetailsProps = NativeStackScreenProps<RootStackPramList, 'AllProducts'>;
 
 const scrennWidth = Dimensions.get('screen').width;
 
 const AllProductItem = () => {
 
-  const navigation = useNavigation();
+  
+  const navigation = useNavigation<StackNavigationProp<RootStackPramList>>();
 
   const backButton = () => {
     navigation.goBack();
-  }
+  };
   return (
     <Box>
       <Flex
@@ -32,9 +37,7 @@ const AllProductItem = () => {
           borderColor={'#aeaeae'}
           rounded={'md'}
           m={1}>
-          <TouchableOpacity
-            onPress={backButton}
-          >
+          <TouchableOpacity onPress={backButton}>
             <Icon name="chevron-left" size={25} color={'#1E1E1E'} />
           </TouchableOpacity>
         </Box>
@@ -69,7 +72,7 @@ const AllProductItem = () => {
             InputLeftElement={
               <Icon name="search" size={30} color={'#818181'} />
             }
-            placeholderTextColor={'#7777773'}
+            placeholderTextColor={'#ffffff'}
             placeholder="Find something in your cart..."
           />
         </Flex>
@@ -85,12 +88,18 @@ const AllProductItem = () => {
               <Box
                 m={2}
                 p={3}
+                mb={7}
                 flexDirection={'row'}
                 borderBottomWidth={3}
                 borderBottomColor={'#9f9f9f'}
                 borderRadius={'1'}>
                 <Box rounded="lg">
-                  <TouchableWithoutFeedback onPress={() => console.log('')}>
+                  <TouchableWithoutFeedback
+                    onPress={() => {
+                      navigation.navigate('ProductDetails', {
+                        product: item,
+                      });
+                    }}>
                     <Image
                       h={100}
                       w={100}
