@@ -88,7 +88,6 @@ const AllProductItem = () => {
               <Box
                 m={2}
                 p={3}
-                mb={7}
                 flexDirection={'row'}
                 borderBottomWidth={3}
                 borderBottomColor={'#9f9f9f'}

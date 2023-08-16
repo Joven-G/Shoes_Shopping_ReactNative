@@ -7,6 +7,7 @@ import {Box, Text, Image, Heading} from 'native-base';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackPramList} from '../screen/Home';
 import ProductDetails from '../../components/productDetailsScreen/ProductDetails';
+import HomeMainPage from '../../components/homeComponents/HomeMainPage';
 
 const Tab = createBottomTabNavigator();
 // type DetailsProps = NativeStackScreenProps<RootStackPramList, 'ProductDetails'>;
@@ -15,20 +16,13 @@ const ButtomTab = ({navigation, route}: any) => {
 
 
   const getTabBarVisibility = (route: any) => {
-    const focusedRouteName = getFocusedRouteNameFromRoute(route);
-    console.log(focusedRouteName);
+    // console.log(route.name);
     
-    if (route === 'ProductDetails') {
+    if (route.name === 'Shoes') {
       return 'none';
     }
     return 'flex';
   };
-
-  const navigationState = useNavigationState(state => state);
-
-  console.log(navigationState.key);
-  
-
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -49,7 +43,7 @@ const ButtomTab = ({navigation, route}: any) => {
       })}>
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={HomeMainPage}
         options={{
           tabBarIcon: ({focused}) => (
             <Box

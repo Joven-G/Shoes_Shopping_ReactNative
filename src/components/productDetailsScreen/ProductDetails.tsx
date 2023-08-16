@@ -1,20 +1,20 @@
-import {TouchableOpacity, View} from 'react-native';
+import {Dimensions, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackPramList} from '../../screens/screen/Home';
 import {useNavigation} from '@react-navigation/native';
 import {Box, Flex, Image, ScrollView, Text, Divider, Center} from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import SizeChart from '../alertDialog/SizeChart';
 
 type DetailsProps = NativeStackScreenProps<RootStackPramList, 'ProductDetails'>;
+const ScreenHeight = Dimensions.get('screen').height;
 
 const ProductDetails = ({route}: DetailsProps) => {
-
-
   const {product} = route.params;
   const navigation = useNavigation();
-  // console.log(route.name);
-  
+
+  const [selectedItem, setSelectedItem] = useState<number | null>(null);
   const [showFullContent, setShowFullContent] = useState(false);
 
   const maxLines = 2;
@@ -64,7 +64,7 @@ const ProductDetails = ({route}: DetailsProps) => {
       </Flex>
 
       {/* Product Details Box */}
-      <ScrollView>
+      <ScrollView height={'80%'}>
         {/* profuct Image */}
         <Box mt={3} pl={6}>
           <Image
@@ -161,10 +161,14 @@ const ProductDetails = ({route}: DetailsProps) => {
         </Center>
         {/* Description */}
         <Box ml={4}>
-          <Text fontSize={'24'} fontWeight={'800'}>
+          <Text fontSize={'22'} fontWeight={'800'}>
             Description
           </Text>
-          <Text fontSize={'15'} bold color={'#808080'} numberOfLines={showFullContent ? undefined : maxLines}>
+          <Text
+            fontSize={'15'}
+            bold
+            color={'#808080'}
+            numberOfLines={showFullContent ? undefined : maxLines}>
             {product.description}
           </Text>
 
@@ -176,7 +180,80 @@ const ProductDetails = ({route}: DetailsProps) => {
             </TouchableOpacity>
           )}
         </Box>
+
+        {/* Select Size */}
+        <Box ml={4}>
+          <Box
+            display={'flex'}
+            flexDirection={'row'}
+            justifyContent={'space-between'}>
+            <Text fontSize={'22'} fontWeight={'800'}>
+              Select size
+            </Text>
+
+            {/* Size Chart Components */}
+            <Box>
+              <SizeChart />
+            </Box>
+          </Box>
+
+          <Flex flexDirection={'row'}>
+            {[7, 8, 9, 10, 11, 12].map(size => {
+              const isSelected = selectedItem === size;
+              return (
+                <TouchableOpacity onPress={() => setSelectedItem(size)}>
+                  <Box
+                    bg={isSelected ? '#1E1E1E' : '#FFFFFF'}
+                    m={1}
+                    borderWidth={0.3}
+                    borderColor={'#1E1E1E'}
+                    rounded={'md'}
+                    w={12}
+                    alignItems={'center'}>
+                    <Text
+                      fontSize={18}
+                      p={3}
+                      bold
+                      color={isSelected ? '#FFFFFF' : '#1E1E1E'}
+                      textAlign={'center'}>
+                      {size}
+                    </Text>
+                  </Box>
+                </TouchableOpacity>
+              );
+            })}
+          </Flex>
+        </Box>
       </ScrollView>
+      {/* Buy Now Button */}
+      <Box
+        p={3}
+        position={'absolute'}
+        // top={ScreenHeight-200}
+        bottom={-100}
+        display={'flex'}
+        flexDirection={'row'}
+        justifyContent={'space-between'}
+        w={'100%'}
+        alignSelf={'center'}
+        alignItems={'center'}>
+        <Box p={2} borderWidth={1} borderColor={'#aeaeae'} rounded={'md'} m={1}>
+          <TouchableOpacity>
+            <Icon name="shopping-cart" color={'#1E1E1E'} size={35} />
+          </TouchableOpacity>
+        </Box>
+        <Box bg={'#1E1E1E'} w={'75%'} p={2} rounded={'lg'}>
+          <TouchableOpacity>
+            <Text
+              textAlign={'center'}
+              color={'#FFFFFF'}
+              fontSize={25}
+              fontWeight={'800'}>
+              Buy now
+            </Text>
+          </TouchableOpacity>
+        </Box>
+      </Box>
     </Box>
   );
 };

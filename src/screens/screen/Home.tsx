@@ -7,9 +7,10 @@ import HomeMainPage from '../../components/homeComponents/HomeMainPage';
 import ProductDetails from '../../components/productDetailsScreen/ProductDetails';
 import Shoes from './Shoes';
 import AllProductItem from '../../components/productDetailsScreen/AllProductItem';
+import ButtomTab from '../navigationScreen/ButtomTab';
 
 interface Product {
-  id:string;
+  id: string;
   title: string;
   imageUrl: string;
   origilanPrice: number;
@@ -23,6 +24,7 @@ interface Product {
 }
 
 export type RootStackPramList = {
+  ButtomTab: undefined;
   ProductHome: undefined;
   ProductDetails: {product: Product};
   AllProducts: undefined;
@@ -34,7 +36,12 @@ const Stack = createNativeStackNavigator<RootStackPramList>();
 const Home = () => {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName='ButtomTab'>
+        <Stack.Screen
+          name="ButtomTab"
+          component={ButtomTab}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="ProductHome"
           component={HomeMainPage}
@@ -44,7 +51,7 @@ const Home = () => {
           name="AllProducts"
           component={AllProductItem}
           options={{
-            headerShown:false,
+            headerShown: false,
           }}
         />
         <Stack.Screen
