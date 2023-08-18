@@ -11,7 +11,6 @@ const App = () => {
   return (
     <NavigationContainer>
       <NativeBaseProvider>
-        {/* <ButtomTab /> */}
         <Home />
       </NativeBaseProvider>
     </NavigationContainer>

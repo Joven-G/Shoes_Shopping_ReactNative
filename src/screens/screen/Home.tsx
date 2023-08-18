@@ -1,14 +1,11 @@
-import {View, Text, StyleSheet} from 'react-native';
-import {ScrollView, Box} from 'native-base';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LinearGradient from 'react-native-linear-gradient';
-import HomeMainPage from '../../components/homeComponents/HomeMainPage';
-import ProductDetails from '../../components/productDetailsScreen/ProductDetails';
-import Shoes from './Shoes';
-import AllProductItem from '../../components/productDetailsScreen/AllProductItem';
+import {HomeMainPage} from '../../components/homeComponents/index';
 import ButtomTab from '../navigationScreen/ButtomTab';
-
+import {
+  ProductDetails,
+  AllProductItem,
+} from '../../components/productDetailsScreen/index';
 interface Product {
   id: string;
   title: string;
@@ -36,7 +33,7 @@ const Stack = createNativeStackNavigator<RootStackPramList>();
 const Home = () => {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName='ButtomTab'>
+      <Stack.Navigator initialRouteName="ButtomTab">
         <Stack.Screen
           name="ButtomTab"
           component={ButtomTab}

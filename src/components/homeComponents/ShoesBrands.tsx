@@ -7,7 +7,6 @@ const ShoesBrands = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
   return (
-    <Box>
       <FlatList
         horizontal={true}
         data={PRODUCTS_LIST}
@@ -35,7 +34,6 @@ const ShoesBrands = () => {
           );
         }}
       />
-    </Box>
   );
 };
 

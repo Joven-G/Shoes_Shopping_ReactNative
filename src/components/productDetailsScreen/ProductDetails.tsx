@@ -5,7 +5,7 @@ import {RootStackPramList} from '../../screens/screen/Home';
 import {useNavigation} from '@react-navigation/native';
 import {Box, Flex, Image, ScrollView, Text, Divider, Center} from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import SizeChart from '../alertDialog/SizeChart';
+import {SizeChart} from '../alertDialog/index'
 
 type DetailsProps = NativeStackScreenProps<RootStackPramList, 'ProductDetails'>;
 const ScreenHeight = Dimensions.get('screen').height;

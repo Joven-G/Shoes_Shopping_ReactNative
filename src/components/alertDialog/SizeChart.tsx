@@ -1,17 +1,16 @@
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity,FlatList,SectionList} from 'react-native';
 import React, {useState, useRef} from 'react';
 import {
   AlertDialog,
   Box,
   Button,
-  FlatList,
   HStack,
   Heading,
   Spacer,
   Text,
   VStack,
 } from 'native-base';
-import {shoesSize} from '../../data/shoesSize';
+import {ShoesSize} from '../../data/shoesSize';
 
 const SizeChart = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,24 +38,16 @@ const SizeChart = () => {
                 <Text underline>To Fit Foot Length(cm)</Text>
               </HStack>
               <FlatList
-                data={shoesSize}
-                keyExtractor={item => item.id}
+                data={ShoesSize}
+                horizontal={false}
+                keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => (
-                  <Box
-                    borderBottomWidth="1"
-                    _dark={{
-                      borderColor: 'muted.50',
-                    }}
-                    borderColor="muted.800"
-                    py="2">
-                    <HStack flexDirection={'row'} space={'60%'} textAlign={'center'}>
-                      <Text color="coolGray.800" bold >
-                        {item.size}
-                      </Text>
+                  <Box borderBottomWidth="1" borderColor="#c3c3c3" ml={3} mr={3} py="2" display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
+                    <Text color={"#1E1E1E"} bold>
+                      {item.size}
+                    </Text>
 
-                      <Text color="coolGray.600">{item.cm}</Text>
-                      <Spacer />
-                    </HStack>
+                    <Text color={'#828282'}>{item.cm}</Text>
                   </Box>
                 )}
               />

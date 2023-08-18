@@ -5,3 +5,4 @@ export {default as OfferPoster} from './OfferPoster';
 export {default as ShoesBrands} from './ShoesBrands';
 export {default as ShoesDiscountCount} from './ShoesDiscountCount'
 export {default as ShoesListItem} from './ShoesListItem' 
+export {default as HomeMainPage} from './HomeMainPage'
