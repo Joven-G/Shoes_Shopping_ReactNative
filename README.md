@@ -37,5 +37,7 @@ Install dependencies: yarn install
 Run the app on Android: yarn react-native run-android
 ```
 
+## UI of this Application(as a Reference)
 
+![This is an alt text.](https://cdn.dribbble.com/userupload/9123298/file/original-ba192c4a460180fc42f8cf5a8e774670.jpg?resize=752x "This is a sample image.")
 
