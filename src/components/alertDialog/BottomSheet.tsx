@@ -60,7 +60,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
         if (translateY.value > -SCREEN_HEIGHT / 3) {
           scrollTo(0);
         } else if (translateY.value < -SCREEN_HEIGHT / 1.5) {
-          scrollTo(MAX_TRANSLATE_Y);
+          scrollTo(MAX_TRANSLATE_Y+140);
         }
       });
 

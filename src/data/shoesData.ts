@@ -10,6 +10,7 @@ interface ShoesType {
   showsType: string;
   showsLeft: number;
   showsSold: number;
+  productCount:number;
 }
 
 export const ProductData: ShoesType[] = [
@@ -27,6 +28,7 @@ export const ProductData: ShoesType[] = [
     showsType: "Men's Shoes",
     showsLeft: 20,
     showsSold: 2100,
+    productCount: 0,
   },
   {
     id: '2',
@@ -42,6 +44,7 @@ export const ProductData: ShoesType[] = [
     showsType: "Men's Shoes",
     showsLeft: 10,
     showsSold: 2600,
+    productCount: 0,
   },
   {
     id: '3',
@@ -57,6 +60,7 @@ export const ProductData: ShoesType[] = [
     showsType: "Men's Shoes",
     showsLeft: 24,
     showsSold: 3100,
+    productCount: 0,
   },
   {
     id: '4',
@@ -72,6 +76,7 @@ export const ProductData: ShoesType[] = [
     showsType: "Men's Shoes",
     showsLeft: 20,
     showsSold: 4500,
+    productCount: 0,
   },
   {
     id: '5',
@@ -87,6 +92,7 @@ export const ProductData: ShoesType[] = [
     showsType: "Men's Shoes",
     showsLeft: 46,
     showsSold: 6100,
+    productCount: 0,
   },
   {
     id: '6',
@@ -102,6 +108,7 @@ export const ProductData: ShoesType[] = [
     showsType: "Men's Shoes",
     showsLeft: 29,
     showsSold: 2900,
+    productCount: 0,
   },
   {
     id: '7',
@@ -117,6 +124,7 @@ export const ProductData: ShoesType[] = [
     showsType: "Men's Shoes",
     showsLeft: 60,
     showsSold: 2400,
+    productCount: 0,
   },
   {
     id: '8',
@@ -132,5 +140,6 @@ export const ProductData: ShoesType[] = [
     showsType: "Men's Shoes",
     showsLeft: 20,
     showsSold: 1900,
+    productCount: 0,
   },
 ];

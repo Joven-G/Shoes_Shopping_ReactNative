@@ -14,16 +14,15 @@ const SearchFilter = () => {
         <Flex
           flexDirection={'row'}
           alignItems={'center'}
-          bg={'#d8d8d8'}
           rounded={'md'}>
           <Input
             w={{
-              base: '80%',
-              md: '10%',
+              base: '90%',
             }}
             InputLeftElement={
               <Icon name="search" size={30} color={'#1E1E1E'} />
             }
+            bg={'#d8d8d8'}
             placeholderTextColor={'#ffffff'}
             placeholder="Find pair of shoes..."
           />

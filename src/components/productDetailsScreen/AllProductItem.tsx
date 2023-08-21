@@ -3,7 +3,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {
   Box,
   Center,
@@ -13,6 +13,7 @@ import {
   Image,
   Input,
   ScrollView,
+  Checkbox,
 } from 'native-base';
 import {ProductData} from '../../data/shoesData';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -26,9 +27,21 @@ import {CheckoutNow} from '../alertDialog/index';
 type DetailsProps = NativeStackScreenProps<RootStackPramList, 'AllProducts'>;
 
 const scrennWidth = Dimensions.get('screen').width;
-
 const AllProductItem = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackPramList>>();
+  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [productCountCart, setProductCountCart] = useState<number>(0);
+
+  const productAdd = () => {
+    setProductCountCart(productCountCart + 1);
+  };
+  const productSubtract = () => {
+    setProductCountCart(productCountCart - 1);
+  };
+
+  const SelectItemCheckbox = () => {
+    console.log('checked');
+  };
 
   const backButton = () => {
     navigation.goBack();
@@ -106,34 +119,40 @@ const AllProductItem = () => {
             keyExtractor={item => item.id}
             renderItem={({item}) => {
               return (
-                  <Box
-                    m={2}
-                    p={3}
-                    flexDirection={'row'}
-                    borderBottomWidth={3}
-                    borderBottomColor={'#9f9f9f'}
-                    borderRadius={'1'}>
-                    <Box rounded="lg">
-                      <TouchableWithoutFeedback
-                        onPress={() => {
-                          navigation.navigate('ProductDetails', {
-                            product: item,
-                          });
-                        }}>
-                        <Image
-                          h={100}
-                          w={100}
-                          opacity={0.8}
-                          bg={'#5F5F5F'}
-                          rounded={'md'}
-                          resizeMode="contain"
-                          source={{uri: item.imageUrl}}
-                          alt="showes_image"
-                        />
-                      </TouchableWithoutFeedback>
-                    </Box>
+                <Box
+                  m={2}
+                  p={3}
+                  flexDirection={'row'}
+                  borderBottomWidth={3}
+                  borderBottomColor={'#9f9f9f'}
+                  borderRadius={'1'}>
+                  <Box rounded="lg">
+                    <TouchableWithoutFeedback
+                      onPress={() => {
+                        navigation.navigate('ProductDetails', {
+                          product: item,
+                        });
+                      }}>
+                      <Image
+                        h={100}
+                        w={100}
+                        opacity={0.8}
+                        bg={'#5F5F5F'}
+                        rounded={'md'}
+                        resizeMode="contain"
+                        source={{uri: item.imageUrl}}
+                        alt="showes_image"
+                      />
+                    </TouchableWithoutFeedback>
+                  </Box>
 
-                    <Box ml={4}>
+                  <Box
+                    ml={4}
+                    display={'flex'}
+                    flexDirection={'row'}
+                    justifyContent={'space-between'}
+                    width={'75%'}>
+                    <Box>
                       <Text bold fontSize={16} color={'#1E1E1E'}>
                         {item.title}
                       </Text>
@@ -156,7 +175,58 @@ const AllProductItem = () => {
                         </Flex>
                       </Flex>
                     </Box>
+                    <Box alignItems={'flex-end'} p={'1'}>
+                      <Box p={1}>
+                        <Checkbox
+                          value="selct_item"
+                          size={'md'}
+                          aria-label='label'
+                          colorScheme="muted"
+                          defaultIsChecked
+                          onChange={() => SelectItemCheckbox()}
+                        />
+                      </Box>
+                      <Box display={'flex'} flexDirection={'row'} mt={5}>
+                        <TouchableOpacity onPress={() => productAdd()}>
+                          <Text
+                            bg={'#1E1E1E'}
+                            color={'#FFFFFF'}
+                            p={1}
+                            fontSize={15}
+                            fontWeight={'900'}
+                            w={7}
+                            textAlign={'center'}
+                            rounded={4}>
+                            +
+                          </Text>
+                        </TouchableOpacity>
+                        <Text
+                          color={'#1E1E1E'}
+                          p={1}
+                          fontSize={15}
+                          fontWeight={'900'}
+                          w={7}
+                          textAlign={'center'}
+                          rounded={4}>
+                          {productCountCart}
+                        </Text>
+                        <TouchableOpacity onPress={() => productSubtract()}>
+                          <Text
+                            bg={'#1E1E1E'}
+                            color={'#FFFFFF'}
+                            p={1}
+                            fontSize={15}
+                            fontWeight={'900'}
+                            w={7}
+                            textAlign={'center'}
+                            rounded={4}>
+                            -
+                          </Text>
+                        </TouchableOpacity>
+                      </Box>
+                    </Box>
                   </Box>
+                </Box>
               );
             }}
           />
