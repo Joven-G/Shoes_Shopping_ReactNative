@@ -28,7 +28,7 @@ To run the app locally on your development environment, follow these steps:
 
 ### Clone this repository:
 
-```git clone https://github.com/Debabrata-Giri-2001/Shoes_App.git```
+```git clone https://github.com/bravedevrabbit/Shoes_Shopping_ReactNative.git```
 
 ## Run for code
 
